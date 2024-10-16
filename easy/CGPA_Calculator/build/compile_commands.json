@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/user/Documents/projects_c++/easy/CGPA_Calculator/build",
+  "command": "/usr/bin/g++ -g -std=gnu++11 -o CMakeFiles/CGPA_Calculator.dir/calculator.cpp.o -c /home/user/Documents/projects_c++/easy/CGPA_Calculator/calculator.cpp",
+  "file": "/home/user/Documents/projects_c++/easy/CGPA_Calculator/calculator.cpp",
+  "output": "CMakeFiles/CGPA_Calculator.dir/calculator.cpp.o"
+}
+]
