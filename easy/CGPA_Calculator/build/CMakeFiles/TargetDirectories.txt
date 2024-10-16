@@ -1,3 +1,0 @@
-/home/user/Documents/projects_c++/easy/CGPA_Calculator/build/CMakeFiles/CGPA_Calculator.dir
-/home/user/Documents/projects_c++/easy/CGPA_Calculator/build/CMakeFiles/edit_cache.dir
-/home/user/Documents/projects_c++/easy/CGPA_Calculator/build/CMakeFiles/rebuild_cache.dir
