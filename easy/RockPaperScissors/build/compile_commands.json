@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/user/Documents/projects_c++/easy/RockPaperScissors/build",
+  "command": "/usr/bin/g++  -Wall -Wextra -Wpedantic -g -o CMakeFiles/RPS.dir/RPS.cpp.o -c /home/user/Documents/projects_c++/easy/RockPaperScissors/RPS.cpp",
+  "file": "/home/user/Documents/projects_c++/easy/RockPaperScissors/RPS.cpp",
+  "output": "CMakeFiles/RPS.dir/RPS.cpp.o"
+}
+]

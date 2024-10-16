@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.10)
+set(CXX_STANDARD 11)
+set(CXX_STANDARD_REQUIRED true)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic")
+project(RPS)
+add_executable(RPS RPS.cpp)

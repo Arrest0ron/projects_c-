@@ -8,6 +8,7 @@ int main(int argc, char** argv)
     int* all_marks = new int[classes_amount];
     input_marks(all_marks, classes_amount); 
     CGPA_calculation_output(all_marks, classes_amount);
+    delete[] all_marks;
     return 0;
 }
 
@@ -33,7 +34,7 @@ int input_classes_amount()
     return classes_amount;
 }
 
-int input_marks(int* all_marks, int classes_amount)
+void input_marks(int* all_marks, int classes_amount)
 {
     int counter = 0;
     while (counter++ != classes_amount)
@@ -51,20 +52,19 @@ int input_marks(int* all_marks, int classes_amount)
         }
         all_marks[counter-1] = class_mark;
     }
-    return 0;
 }
 
-float CGPA_calculation_output(int* all_marks, int classes_amount)
+float CGPA_calculation_output(const int* all_marks, int classes_amount)
 {
-    std::cout << "__________\n";
+    std::cout << "_____________________\n\n";
     float totalscore;
     for (int i =0; i!= classes_amount; i++)
     {
-        std::cout << all_marks[i] << "\n";
+        std::cout << "class №" << i << ": " << all_marks[i] << "\n";
         totalscore += all_marks[i];
     }
     
-    std::cout << "__________\nTotal: " << totalscore << "\n";
+    std::cout << "_____________________\nTotal: " << totalscore << "\n";
 
 
     float CGPA = totalscore / static_cast<float>(classes_amount);
