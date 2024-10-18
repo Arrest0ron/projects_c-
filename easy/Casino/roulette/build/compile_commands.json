@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/user/Documents/projects_c++/easy/Casino/slot/build",
+  "command": "/usr/bin/g++ -g -std=gnu++17 -o CMakeFiles/slot.dir/slot.cpp.o -c /home/user/Documents/projects_c++/easy/Casino/slot/slot.cpp",
+  "file": "/home/user/Documents/projects_c++/easy/Casino/slot/slot.cpp",
+  "output": "CMakeFiles/slot.dir/slot.cpp.o"
+}
+]
