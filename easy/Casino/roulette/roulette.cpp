@@ -2,11 +2,11 @@
 #include <iostream> 
 #include "roulette.hpp"
 
-Roulette::Roulette(long seed)
+Roulette::Roulette(std::random_device* seed)
 
     {
         this->gamble = new char*[3] {"Zero", "Black", "Red"};
-        std::mt19937* a = new std::mt19937{seed};
+        std::mt19937* a = new std::mt19937{(*seed)()};
         MT = a;
     }
     

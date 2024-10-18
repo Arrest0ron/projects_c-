@@ -3,7 +3,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "libslot.a"
+			"path" : "libroulette.a"
 		}
 	],
 	"backtrace" : 1,
@@ -54,9 +54,9 @@
 			]
 		}
 	],
-	"id" : "slot::@6890427a1f51a3e7e1df",
-	"name" : "slot",
-	"nameOnDisk" : "libslot.a",
+	"id" : "roulette::@6890427a1f51a3e7e1df",
+	"name" : "roulette",
+	"nameOnDisk" : "libroulette.a",
 	"paths" : 
 	{
 		"build" : ".",
@@ -84,12 +84,12 @@
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
-			"path" : "slot.cpp",
+			"path" : "roulette.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 1,
-			"path" : "slot.hpp",
+			"path" : "roulette.hpp",
 			"sourceGroupIndex" : 1
 		}
 	],

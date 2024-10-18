@@ -10,7 +10,7 @@ class Slot
 
     public:
 
-    Slot(long seed);
+    Slot(std::random_device* seed);
     void Spin(int* cash);
     ~Slot();
 };

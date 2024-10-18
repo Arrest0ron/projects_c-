@@ -2,11 +2,11 @@
 #include <iostream> 
 #include "slot.hpp"
 
-Slot::Slot(long seed)
+Slot::Slot(std::random_device* seed)
 
     {
         this->gamble = new char*[4] {"Seven", "Bar", "Banana", "Cherry"};
-        std::mt19937* a = new std::mt19937{seed};
+        std::mt19937* a = new std::mt19937{(*seed)()};
         MT = a;
     }
     

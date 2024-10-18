@@ -10,7 +10,7 @@ class Roulette
 
     public:
 
-    Roulette(long seed);
+    Roulette(std::random_device* seed);
     void Spin(int* cash);
     ~Roulette();
 };
