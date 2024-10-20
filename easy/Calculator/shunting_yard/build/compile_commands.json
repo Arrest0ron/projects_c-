@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/user/Documents/projects_c++/easy/Calculator/shunting_yard/build",
+  "command": "/usr/bin/g++ -g -std=gnu++17 -o CMakeFiles/shunting_yard.dir/shunting_yard.cpp.o -c /home/user/Documents/projects_c++/easy/Calculator/shunting_yard/shunting_yard.cpp",
+  "file": "/home/user/Documents/projects_c++/easy/Calculator/shunting_yard/shunting_yard.cpp",
+  "output": "CMakeFiles/shunting_yard.dir/shunting_yard.cpp.o"
+}
+]

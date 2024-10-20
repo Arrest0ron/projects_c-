@@ -1,0 +1,9 @@
+/home/user/Documents/projects_c++/easy/Calculator/build/CMakeFiles/calculator.dir
+/home/user/Documents/projects_c++/easy/Calculator/build/CMakeFiles/edit_cache.dir
+/home/user/Documents/projects_c++/easy/Calculator/build/CMakeFiles/rebuild_cache.dir
+/home/user/Documents/projects_c++/easy/Calculator/build/expression_solver/CMakeFiles/expression_solver.dir
+/home/user/Documents/projects_c++/easy/Calculator/build/expression_solver/CMakeFiles/edit_cache.dir
+/home/user/Documents/projects_c++/easy/Calculator/build/expression_solver/CMakeFiles/rebuild_cache.dir
+/home/user/Documents/projects_c++/easy/Calculator/build/shunting_yard/CMakeFiles/shunting_yard.dir
+/home/user/Documents/projects_c++/easy/Calculator/build/shunting_yard/CMakeFiles/edit_cache.dir
+/home/user/Documents/projects_c++/easy/Calculator/build/shunting_yard/CMakeFiles/rebuild_cache.dir
