@@ -1,8 +1,0 @@
-[
-{
-  "directory": "/home/user/Documents/projects_c++/easy/Calculator/Expression_solver/build",
-  "command": "/usr/bin/g++ -g -std=gnu++17 -o CMakeFiles/expression_solver.dir/expression_solver.cpp.o -c /home/user/Documents/projects_c++/easy/Calculator/Expression_solver/expression_solver.cpp",
-  "file": "/home/user/Documents/projects_c++/easy/Calculator/Expression_solver/expression_solver.cpp",
-  "output": "CMakeFiles/expression_solver.dir/expression_solver.cpp.o"
-}
-]

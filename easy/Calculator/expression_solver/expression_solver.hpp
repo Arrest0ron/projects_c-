@@ -3,7 +3,14 @@
 #include <string>
 #include <iostream>
 
+
 typedef double (*FUNC)(double);
+struct FuncDef 
+{
+    FUNC p;
+    std::string name;
+};
+
 
 class Solver
 {
@@ -12,4 +19,6 @@ class Solver
     static void reinterpet_expr(std::string& expression,const std::string& funcstr,const double val);
     static void change_expr(std::string& expression, const std::string& funcstr,const std::string& resstr);
 };
+
+
 #endif //EXPRESSION_SOLVER

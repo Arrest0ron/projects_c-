@@ -1,3 +1,0 @@
-/home/user/Documents/projects_c++/easy/Calculator/shunting_yard/build/CMakeFiles/shunting_yard.dir
-/home/user/Documents/projects_c++/easy/Calculator/shunting_yard/build/CMakeFiles/edit_cache.dir
-/home/user/Documents/projects_c++/easy/Calculator/shunting_yard/build/CMakeFiles/rebuild_cache.dir

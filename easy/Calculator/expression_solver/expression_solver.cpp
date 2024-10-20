@@ -27,19 +27,19 @@ void Solver::solve_expr(std::string& expression,const std::string& funcstr,const
 void Solver::reinterpet_expr(std::string& expression,const std::string& funcstr,const double val)
 {
     int a = expression.find(funcstr);
+    std::cout << "EXPRESSION: " << a << "\n";
     while (a!=-1)
     {
         int b = a +funcstr.length();
         std::string trigexpr = std::to_string (val);
         int trlen = trigexpr.length();
         expression.erase(expression.begin()+a, expression.begin()+b);
-        for (int i = 0; i!=trlen; i++)
-        {
-            expression.insert(expression.begin()+a+i,trigexpr[i]);
-        }
+        expression.insert(expression.begin()+a,trigexpr.begin(),trigexpr.end());
+        
         std::cout << expression << "   {\"" << funcstr << "\" reinterpreted}\n";
         a = expression.find(funcstr);
     }
+    
 }
 
 void Solver::change_expr(std::string& expression, const std::string& funcstr,const std::string& resstr)

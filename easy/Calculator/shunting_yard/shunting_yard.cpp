@@ -5,5 +5,5 @@
 
 std::queue<std::string> shunting_yard(std::string& equation)
 {
-    std::string a[] = {};
+    // std::string a[];
 }
