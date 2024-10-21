@@ -3,13 +3,7 @@
 #include <string>
 #include <iostream>
 
-
 typedef double (*FUNC)(double);
-struct FuncDef 
-{
-    FUNC p;
-    std::string name;
-};
 
 
 class Solver
