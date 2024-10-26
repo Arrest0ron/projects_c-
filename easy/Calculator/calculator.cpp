@@ -4,8 +4,11 @@
 #include <queue>
 #include <stack>
 #include <map>
+#include <iomanip>
 #include "shunting_yard/shunting_yard.hpp"
 #include "expression_solver/expression_solver.hpp"
+#include <sstream>
+#include <string>
 
 bool is_second_of_greater_precedence(std::string& first, std::string& second, std::map<std::string, int>& order);
 double cot (double X){return 1/std::tan(X);}
@@ -13,9 +16,11 @@ double cot (double X){return 1/std::tan(X);}
 bool isoperator(std::string s);
 bool isNumber(std::string expr);
 bool isBinOperator(std::string s);
+bool isBinOperator(char s);
 void tokenize(std::vector<std::string>& tokens, int index);
 bool isUnsolved(std::string expr);
 bool isSingOperator(std::string s);
+std::string strip(std::string& expr);
 
 double plus(double a, double b){return a+b;}
 double minus(double a, double b){return a-b;}
@@ -24,6 +29,12 @@ double div(double a, double b){return a/b;}
 double power(double a, double b){return std::pow(a,b);}
 
 
+
+std::string to_string_with_precision(double value, int precision) {
+    std::ostringstream out;
+    out << std::fixed << std::setprecision(precision) << value;
+    return out.str();
+}
 
 
 struct FuncDef 
@@ -45,6 +56,12 @@ struct FuncDef
 
 int main(int argc, char** argv)
 {
+
+    
+    // std::cout << isUnsolved("1-36");
+
+    // return 0;
+    
     std::map<std::string, int> order;
 
     order["+"] = 0;
@@ -61,54 +78,78 @@ int main(int argc, char** argv)
     order["ln"] = 3;
     order["log2"] = 3;
     order["log10"] = 3;
-    
-    
-
-
     const double pi = 3.14159265358979323846;
     const double e = std::exp(1.0);
-    std::vector<std::string> tokens { "-sin(-1)"};
+
+
+    // std::string a = to_string_with_precision(-123.1231231212, 10);
+    std::cout.precision(15);
+    std::cout << std::fixed << std::setprecision(10);
+    // return 0;
+    std::vector<std::string> tokens {" e^(-2.5)"};
+
+
+    // tokenize(tokens, 0);
+
+
+
+    // return 0;
+    for (std::string& i : tokens)
+    {
+        i = strip(i);
+        // std::cout << i << "\n";
+    }
+    // for (auto i : tokens)
+    // {
+    //    std::cout << i;
+    // }
+    // return 0;
     std::pair<std::string, std::string> consts[4]
     {
-    {"-e", std::to_string(-e)},
-    {"e",std::to_string(e)},
-    {"-pi", std::to_string(-pi)},
-    {"pi", std::to_string(pi)}
+    {"-e", to_string_with_precision(-e,10)},
+    {"e",to_string_with_precision(e,10)},
+    {"-pi", to_string_with_precision(-pi,10)},
+    {"pi", to_string_with_precision(pi,10)}
     };
     int token_index = 0;
-    for (auto element : consts)
+    for (int i = 0; i!= 4; i++)
     {
+        auto element = consts[i];
         int search = tokens[token_index].find(element.first);
         if (search != -1)
         {
-            
+            i--;
             tokens[token_index].erase(tokens[token_index].begin()+search , tokens[token_index].begin()+search + element.first.length());
             tokens[token_index].insert(tokens[token_index].begin()+search, element.second.begin(), element.second.end());
         }
     }
     while (token_index != tokens.size())
     {
-
-        
+        // std::cout << token_index << " index.\n";
         if (isUnsolved(tokens[token_index]))
         {
             tokenize(tokens, token_index);
             token_index--;
+            std::cout << "Unsolved token found.\n";
         }
         token_index ++;
-    
+    }
+    for (std::string& i : tokens)
+    {
+        std::cout << i << "\"\n";
     }
 
+    // return 0;
 
     std::queue<std::string> output;
     std::stack<std::string> oper;
 
     // std::cout << is_second_of_greater_precedence(g,l);
-    for (auto i : tokens)
-    {
-        std::cout << i << ";\n";
-    }
-    
+    // for (auto i : tokens)
+    // {
+    //     std::cout << i << ";\n";
+    // }
+    // output.push(0);
     int c = 0;
     for (auto i : tokens)
 
@@ -153,6 +194,12 @@ int main(int argc, char** argv)
 
     while (!oper.empty())
     {
+        if (oper.top() == "(" || oper.top() == "(")
+        {
+            std::cout << "warning: " << oper.top() << " in output stack (could be due () in start)\n";
+            oper.pop();
+            continue;
+        }
         output.push(oper.top());
         oper.pop();
     }
@@ -161,15 +208,23 @@ int main(int argc, char** argv)
     while(!output.empty())
     {
         std::string i = output.front();
-        
+        std::string temp = "";
         output.pop();
         if (isBinOperator(i))
         {
-            
             std::string b = oper.top();
+            std::string a;
             oper.pop();
-            std::string a = oper.top();
-            oper.pop();
+            if ((i == "+" || i == "-") && oper.empty())
+            {
+                a = "0";
+            }
+            else
+            {
+                a = oper.top();
+                oper.pop();
+            }
+            
             std::cout << "a: " << a << " b: " << b <<   " oper: \"" << i << "\"\n";
             double (*oper_f)(double,double);
             if (i=="+") 
@@ -190,11 +245,23 @@ int main(int argc, char** argv)
             }
             if (i=="^") 
             {
-                std::cout << i << "\n";
+                // std::cout << i << "\n";
                 oper_f = power;
             }    
             
-            oper.push(std::to_string(oper_f(std::stod(a), std::stod(b))));
+            
+            temp = to_string_with_precision(oper_f(std::stod(a), std::stod(b)),10);
+            if (temp == "nan" || temp == "-nan")
+            {
+                oper.push("0.0");
+                std::cout << "Warning: NaN result\n";
+                continue;
+            }
+            if (temp == "inf" || temp == "-inf")
+            {
+                throw(std::runtime_error("INF RESULT"));
+            }
+            oper.push(temp);
             continue;
         }
         else if (isSingOperator(i))
@@ -209,7 +276,18 @@ int main(int argc, char** argv)
                     oper_f = j.p;
                 }
             }
-            oper.push(std::to_string(oper_f(std::stod(b))));
+            temp = to_string_with_precision(oper_f(std::stod(b)),10);
+            if (temp == "nan" || temp == "-nan")
+            {
+                oper.push(0);
+                std::cout << "Warning: NaN result\n";
+            }
+            if (temp == "inf" || temp == "-inf")
+            {
+                throw(std::runtime_error("INF RESULT"));
+            }
+            oper.push(temp);
+            
             continue;
         }
         oper.push(i);
@@ -245,7 +323,6 @@ void tokenize(std::vector<std::string>& tokens, int index)
                 }
             tokens.insert(tokens.begin()+index, std::string{s});
             index++;
-            
             current_token = "";
         }
         else if (isalpha(s))
@@ -368,6 +445,14 @@ bool isBinOperator(std::string s)
     if (op.find(s)==-1 || s.length()>1){return false;}
     return true;
 }
+
+bool isBinOperator(char s)
+{
+    std::string op { "+-/*^"};
+    if (op.find(s)==-1){return false;}
+    return true;
+}
+
 bool isSingOperator(std::string s)
 {
     for (FuncDef i : MONO_FUNCTIONS)
@@ -377,7 +462,6 @@ bool isSingOperator(std::string s)
             return true;
         }
     }
-    
     return false;
 }
 
@@ -399,40 +483,25 @@ bool is_second_of_greater_precedence(std::string& first, std::string& second, st
 
 bool isUnsolved(std::string expr)
 {
-    bool contains_operators = 0, contains_digits = 0, contains_brackets = 0;
-    bool unarPlusFlag = 1, unarMinusFlag = 1;
-    for (char a : expr)
-    {
-        if ((a == '(' )|| (a==')')){contains_brackets =1;}
-        if (isdigit(a) || a =='.')
-        {
-            contains_digits=1;
-        }
-        else if (isalpha(a) || isBinOperator(std::string{a}))
-        {
-            if (a == '-' && unarMinusFlag)
-            {
-                unarMinusFlag =0;
-                continue;
-            }
-            if (a == '+' && unarMinusFlag)
-            {
-                unarPlusFlag =0;
-                continue;
-            }
-            contains_operators=1;
-        }
-        if (contains_digits && contains_operators)
-        {
-            return 1;
-        }
+    int operators_amount = 0, operands_amount = 0;
+    int standart_part = 0;   // 0 = nothing yet, 1 = only operator, 2 = both 
+    if (expr.size() == 1){return 0;}
 
-        if (contains_brackets && contains_operators)
-        {
-            return 1;
-        }
-        
+    for (char c : expr)
+    {
+        if (c == '-' || c == '+'){operands_amount++;}
+        // if (isalpha(c)){return 1;}
+        if (c == '(' || c == ')'){operands_amount++;}
+        if (operands_amount>1){return 1;}
+        if (c == '*' || c == '/' || c == '^'){return 1;}
     }
+    for (char c : expr)
+    {
+        if ((c == '-' || c == '+' ) && (standart_part == 0)){standart_part = 1;}
+        if (( isdigit(c) || c == '.' ) && ((standart_part == 1) || (standart_part == 0) )){standart_part = 2;}
+        if ((c == '-' || c == '+' ) && (standart_part == 2)){return 1;}
+    }
+
     return 0;
     
 }
@@ -443,6 +512,7 @@ bool isNumber(std::string expr)
     bool unarPlusFlag = 1, unarMinusFlag = 1;
     for (char a : expr)
     {
+        if (isalpha(a)){return 0;}
         if (isdigit(a) || a =='.')
         {
             contains_digits=1;
@@ -469,5 +539,17 @@ bool isNumber(std::string expr)
     
 }
 
+std::string strip(std::string& expr)
+{
 
+    std::string newstr;
+    for (char i : expr)
+    {
+        if (i!=' ')
+        {
+            newstr +=i;
+        }
+    }
+    return newstr;
+}
 
